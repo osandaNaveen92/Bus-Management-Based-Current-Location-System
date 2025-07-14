@@ -1,0 +1,24 @@
+<!-- user.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+  <script src="js/firebase-config.js" defer></script>
+  <script src="js/user.js" defer></script>
+</head>
+<body>
+  <h1>Welcome to Ebus Tracker</h1>
+
+  <form id="searchForm">
+    <input type="text" id="source" placeholder="Source" required>
+    <input type="text" id="destination" placeholder="Destination" required>
+    <button type="submit">Search Bus</button>
+  </form>
+
+  <div id="results"></div>
+</body>
+</html>

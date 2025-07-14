@@ -1,0 +1,26 @@
+<!-- driver.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Driver Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+  <script src="js/firebase-config.js" defer></script>
+  <script src="js/driver.js" defer></script>
+</head>
+<body>
+  <h1>Driver Dashboard</h1>
+  <form id="busForm">
+    <input type="text" id="bus_id" placeholder="Bus ID" required>
+    <input type="text" id="bus_type" placeholder="Bus Type" required>
+    <input type="text" id="source" placeholder="Source" required>
+    <input type="text" id="destination" placeholder="Destination" required>
+    <input type="text" id="contact" placeholder="Contact Number" required>
+    <input type="text" id="lat" placeholder="Latitude" required>
+    <input type="text" id="lng" placeholder="Longitude" required>
+    <button type="submit">Submit Bus Info</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GoFlow</title>
+  <link rel="stylesheet" href="css/index.css">
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+
+<!-- Firebase config -->
+<script src="js/firebase-config.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to GoFlow</h1>
+    <p>Please proceed by selecting your role</p>
+
+    <button id="roleBtn">Select Your Role</button>
+
+    <div class="role-selection" id="roleOptions">
+      <button onclick="goToLogin('admin')">Admin Login</button>
+      <button onclick="goToLogin('driver')">Driver Login</button>
+      <button onclick="goToLogin('user')">User Login</button>
+    </div>
+
+    <p class="or">OR</p>
+
+    <button onclick="window.location.href='register.html'">New User? Register Here</button>
+  </div>
+
+  <script src="js/index.js"></script>
+</body>
+</html>
