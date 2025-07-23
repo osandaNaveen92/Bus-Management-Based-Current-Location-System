@@ -1,29 +1,49 @@
-<!-- register.html -->
+<!-- public/register.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GoFlow - Register</title>
-  <link rel="stylesheet" href="css/index.css"> <!-- Reusing index.css for consistency -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/index.css"> <!-- Reuse existing styles -->
 </head>
 <body>
   <div class="container">
-    <h1>Create Your GoFlow Account</h1>
+    <h1>Create a GoFlow Account</h1>
+
     <form id="registerForm">
-      <input type="text" id="first_name" placeholder="First Name" required>
-      <input type="text" id="last_name" placeholder="Last Name" required>
-      <input type="email" id="reg_email" placeholder="Email" required>
-      <input type="password" id="reg_password" placeholder="Password" required>
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" placeholder="Enter your first name" required>
+      </div>
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" placeholder="Enter your last name" required>
+      </div>
+      <div class="form-group">
+        <label for="reg_email">Email</label>
+        <input type="email" id="reg_email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="reg_password">Password</label>
+        <input type="password" id="reg_password" placeholder="Create a password" required>
+      </div>
       <button type="submit">Register</button>
     </form>
+
     <p>Already have an account? <a href="index.html">Login Here</a></p>
   </div>
 
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+
+  <!-- Firebase Config -->
   <script src="js/firebase-config.js"></script>
-  <script src="js/register.js"></script>
+
+  <!-- Register Script -->
+  <script type="module" src="js/register.js"></script>
+
 </body>
 </html>

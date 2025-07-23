@@ -3,13 +3,19 @@
 document.getElementById("busForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
+  const lat = parseFloat(document.getElementById("lat").value.trim());
+  const lng = parseFloat(document.getElementById("lng").value.trim());
+
+  if (isNaN(lat) || isNaN(lng)) {
+    alert("Invalid latitude or longitude.");
+    return;
+  }
+
   const bus_id = document.getElementById("bus_id").value.trim();
   const bus_type = document.getElementById("bus_type").value.trim();
   const source = document.getElementById("source").value.trim().toLowerCase();
   const destination = document.getElementById("destination").value.trim().toLowerCase();
   const contact = document.getElementById("contact").value.trim();
-  const lat = parseFloat(document.getElementById("lat").value.trim());
-  const lng = parseFloat(document.getElementById("lng").value.trim());
 
   const user = auth.currentUser;
   if (!user) {

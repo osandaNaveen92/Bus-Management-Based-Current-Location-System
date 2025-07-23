@@ -9,7 +9,7 @@ document.getElementById("createDriverForm").addEventListener("submit", function 
   auth.createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const uid = userCredential.user.uid;
-      return db.collection("users").doc(uid).set({
+      return db.collection("drivers").doc(uid).set({
         uid,
         email,
         role: "driver",
@@ -30,14 +30,22 @@ function loadDrivers() {
   const driverList = document.getElementById("driverList");
   driverList.innerHTML = "";
 
-  db.collection("users").where("role", "==", "driver").get()
+  db.collection("drivers").where("role", "==", "driver").get()
     .then((snapshot) => {
+      if (snapshot.empty) {
+        driverList.innerHTML = "<li>No drivers registered.</li>";
+        return;
+      }
+
       snapshot.forEach((doc) => {
         const data = doc.data();
         const li = document.createElement("li");
         li.textContent = `${data.email} - Registered on: ${new Date(data.registered_at).toLocaleString()}`;
         driverList.appendChild(li);
       });
+    })
+    .catch((error) => {
+      alert("Error loading drivers: " + error.message);
     });
 }
 

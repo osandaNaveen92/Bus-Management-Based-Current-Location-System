@@ -3,6 +3,11 @@
 document.getElementById("searchForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
+  if (!db) {
+    alert("Database not initialized.");
+    return;
+  }
+
   const source = document.getElementById("source").value.trim().toLowerCase();
   const destination = document.getElementById("destination").value.trim().toLowerCase();
 

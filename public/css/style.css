@@ -64,3 +64,26 @@ button:hover {
   margin: 20px 0 10px;
   font-weight: bold;
 }
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 8px 0 16px 0;
+  border: 1px solid #b0c4de;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 15px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  background: #f8fafd;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.2);
+  background: #fff;
+}
