@@ -1,28 +1,38 @@
 // admin.js
 
+
+import { auth, db } from './firebase-config.js';
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+import { collection, doc, setDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+
+
 document.getElementById("createDriverForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const email = document.getElementById("driver_email").value;
+  const name = document.getElementById("driver_name").value.trim();
+  const email = document.getElementById("driver_email").value.trim();
+  const phone = document.getElementById("driver_phone").value.trim();
   const password = document.getElementById("driver_password").value;
 
-  auth.createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const uid = userCredential.user.uid;
-      return db.collection("drivers").doc(uid).set({
-        uid,
-        email,
-        role: "driver",
-        registered_at: new Date().toISOString()
-      });
-    })
+createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const uid = userCredential.user.uid;
+    return setDoc(doc(db, "drivers", uid), {
+      uid,
+      name,
+      email,
+      phone,
+      role: "driver",
+      registered_at: new Date().toISOString()
+    });
+  })
     .then(() => {
       alert("Driver created successfully!");
       document.getElementById("createDriverForm").reset();
       loadDrivers();
     })
     .catch((error) => {
-      alert(error.message);
+      alert("Error creating driver: " + error.message);
     });
 });
 
@@ -40,7 +50,7 @@ function loadDrivers() {
       snapshot.forEach((doc) => {
         const data = doc.data();
         const li = document.createElement("li");
-        li.textContent = `${data.email} - Registered on: ${new Date(data.registered_at).toLocaleString()}`;
+        li.textContent = `${data.name} (${data.email}) - ${data.phone} - Registered: ${new Date(data.registered_at).toLocaleString()}`;
         driverList.appendChild(li);
       });
     })
@@ -51,3 +61,15 @@ function loadDrivers() {
 
 // Load drivers on page load
 window.onload = loadDrivers;
+
+// Sign out logic
+const signOutBtn = document.getElementById("signOutBtn");
+if (signOutBtn) {
+  signOutBtn.addEventListener("click", function () {
+    if (typeof firebase !== "undefined" && firebase.auth) {
+      firebase.auth().signOut().then(() => {
+        window.location.href = "login.html";
+      });
+    }
+  });
+}

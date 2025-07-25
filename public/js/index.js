@@ -1,25 +1,18 @@
 // index.js
 
-function goToLogin(role) {
-  switch (role) {
-    case 'admin':
-      window.location.href = 'admin.html';
-      break;
-    case 'driver':
-      window.location.href = 'driver.html';
-      break;
-    case 'user':
-      window.location.href = 'user.html';
-      break;
-    default:
-      alert("Invalid role selected.");
-  }
+function toggleDropdown() {
+  const dropdown = document.getElementById("loginDropdown");
+  dropdown.classList.toggle("show");
 }
 
-// Toggle role options visibility with animation
-const roleBtn = document.getElementById("roleBtn");
-const roleOptions = document.getElementById("roleOptions");
-
-roleBtn.addEventListener("click", () => {
-  roleOptions.classList.toggle("show");
+// Optional: close dropdown when clicking outside
+window.addEventListener("click", function (event) {
+  if (!event.target.matches('.btn')) {
+    const dropdowns = document.getElementsByClassName("dropdown-content");
+    for (const d of dropdowns) {
+      if (d.classList.contains("show")) {
+        d.classList.remove("show");
+      }
+    }
+  }
 });

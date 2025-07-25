@@ -1,44 +1,80 @@
-// user.js
+// js/user.js
 
-document.getElementById("searchForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+let map, directionsService, directionsRenderer;
 
-  if (!db) {
-    alert("Database not initialized.");
-    return;
-  }
+window.addEventListener('DOMContentLoaded', () => {
+  initMap();
 
-  const source = document.getElementById("source").value.trim().toLowerCase();
-  const destination = document.getElementById("destination").value.trim().toLowerCase();
+  document.getElementById("searchForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const source = document.getElementById("source").value.trim();
+    const destination = document.getElementById("destination").value.trim();
+    await showAvailableBuses(source, destination);
+  });
+});
 
-  db.collection("buses")
-    .where("route.source", "==", source)
-    .where("route.destination", "==", destination)
-    .get()
-    .then((snapshot) => {
-      const resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "";
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat:22.2604 , lng:84.8536 },
+    zoom: 14,
+    mapTypeControl: false,      // Removes map type (satellite) control
+    fullscreenControl: false,   // Removes fullscreen control
+  });
 
-      if (snapshot.empty) {
-        resultsDiv.innerHTML = "<p>No buses found for this route.</p>";
-        return;
+  directionsService = new google.maps.DirectionsService();
+  directionsRenderer = new google.maps.DirectionsRenderer({
+    suppressMarkers: false,
+    preserveViewport: true,
+  });
+  directionsRenderer.setMap(map);
+}
+
+async function showAvailableBuses(source, destination) {
+  const request = {
+    origin: source,
+    destination: destination,
+    travelMode: google.maps.TravelMode.DRIVING,
+  };
+
+  directionsService.route(request, function (result, status) {
+    if (status === google.maps.DirectionsStatus.OK) {
+      directionsRenderer.setDirections(result);
+    } else {
+      alert("Could not plot route: " + status);
+    }
+  });
+
+  // Optionally still show available bus markers (like earlier)
+  try {
+    const snapshot = await db.collection("buses").get();
+    snapshot.forEach(doc => {
+      const bus = doc.data();
+      if (
+        bus.source.toLowerCase() === source.toLowerCase() &&
+        bus.destination.toLowerCase() === destination.toLowerCase()
+      ) {
+        new google.maps.Marker({
+          position: {
+            lat: parseFloat(bus.latitude),
+            lng: parseFloat(bus.longitude)
+          },
+          map,
+          title: `Bus No: ${bus.bus_number}`,
+        });
       }
+    });
+  } catch (error) {
+    console.error("Error fetching bus data:", error);
+    alert("Failed to fetch bus data.");
+  }
+}
 
-      snapshot.forEach((doc) => {
-        const data = doc.data();
-        const card = document.createElement("div");
-        card.className = "bus-card";
-        card.innerHTML = `
-          <h3>Bus ID: ${data.bus_id}</h3>
-          <p>Type: ${data.bus_type}</p>
-          <p>Contact: ${data.contact_number}</p>
-          <p>Current Location: ${data.current_location ? data.current_location.lat + ", " + data.current_location.lng : "Not Updated"}</p>
-          <p>Last Updated: ${data.last_updated ? new Date(data.last_updated).toLocaleString() : "N/A"}</p>
-        `;
-        resultsDiv.appendChild(card);
-      });
+function logoutUser() {
+  auth.signOut()
+    .then(() => {
+      window.location.href = "index.html";
     })
     .catch((error) => {
-      alert("Error fetching buses: " + error.message);
+      alert("Logout failed: " + error.message);
     });
-});
+}

@@ -1,0 +1,121 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(120deg, #74ebd5 0%, #acb6e5 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: #fff;
+  padding: 40px 32px 32px 32px;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.13);
+  width: 340px;
+  text-align: center;
+}
+
+h1 {
+  color: #1a237e;
+  margin-bottom: 18px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+#selectedRole {
+  color: #007bff;
+  font-weight: 500;
+  margin-bottom: 18px;
+  min-height: 24px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+input[type="email"],
+input[type="password"] {
+  padding: 12px 10px;
+  border: 1px solid #b0c4de;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f8fafd;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.15);
+  background: #fff;
+}
+
+button[type="submit"] {
+  background-color: #1a237e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+
+button[type="submit"]:hover {
+  background-color: #3949ab;
+}
+
+p {
+  margin-top: 10px;
+  color: #444;
+  font-size: 1rem;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+select#roleSelect {
+  padding: 12px 10px;
+  border: 1px solid #b0c4de;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f8fafd;
+  margin-bottom: 10px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+select#roleSelect:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.15);
+  background: #fff;
+}
+
+@media (max-width: 500px) {
+  .container {
+    width: 95vw;
+    padding: 24px 6vw;
+  }
+  h1 {
+    font-size: 1.3rem;
+  }
+}

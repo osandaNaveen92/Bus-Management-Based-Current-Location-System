@@ -1,43 +1,98 @@
-<!-- index.html -->
+<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GoFlow</title>
-  <link rel="stylesheet" href="css/index.css">
-  <!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
-<!-- Firebase config -->
-<script src="js/firebase-config.js"></script>
-
+  <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to GoFlow</h1>
-    <p>Please proceed by selecting your role</p>
-
-    <button id="roleBtn">Select Your Role</button>
-
-    <div class="role-selection" id="roleOptions">
-      <button onclick="goToLogin('admin')">Admin Login</button>
-      <button onclick="goToLogin('driver')">Driver Login</button>
-      <button onclick="goToLogin('user')">User Login</button>
+  <header class="top-bar">
+    <div class="logo-image">
+      <img src="assets/logo.png" alt="logo" />
     </div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#company">Company</a>
+      <button class="btn login-btn" onclick="window.location.href='login.html'">
+        Login
+      </button>
+      <button class="btn create-account" onclick="window.location.href='register.html'">
+        Create Account
+      </button>
+    </nav>
+  </header>
 
-    <p class="or">OR</p>
-
-    <button onclick="window.location.href='register.html'">New User? Register Here</button>
-  </div>
+  <main class="hero-section">
+    <div class="hero-text">
+      <h1>Powering the Future of Public Transit</h1>
+      <p>Experience the future of public transit – where every minute counts.</p>
+      <button class="btn get-started" onclick="window.location.href='register.html'">
+        Get Started
+      </button>
+    </div>
+    <div class="hero-image">
+      <img src="assets/ebus.png" alt="Bus Illustration" />
+    </div>
+  </main>
 
   <script src="js/index.js"></script>
-  <script>
-  function goToLogin(role) {
-    window.location.href = `login.html?role=${role}`;
-  }
-</script>
+
+  <!-- About Section -->
+  <section id="about" class="info-section about-section">
+    <div class="about-content">
+      <div class="about-image">
+        <img src="assets/about.png" alt="Bus Illustration" />
+      </div>
+      <div class="info-container">
+        <h2>About GoFlow</h2>
+        <p>
+          GoFlow is a smart Bus management platform designed to improve public transportation with live tracking, real-time updates, and data-driven planning. We aim to bridge the gap between commuters and efficient urban transit systems.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Separator -->
+  <hr class="section-separator" />
+
+  <!-- Company Section -->
+  <section id="company" class="info-section">
+    <div class="info-container">
+      <h2>Our Company</h2>
+      <p>
+        Our mission is to make public transport predictable, accessible, and eco-friendly. We believe that time is precious and no one should be left guessing when their ride will arrive.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Social</h3>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Twitter</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Privacy & Terms</h3>
+      <ul>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cancellation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 GoFlow. All rights reserved.
+  </div>
+</footer>
+
 </body>
 </html>

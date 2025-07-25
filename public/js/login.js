@@ -3,8 +3,9 @@ import { auth, db } from './firebase-config.js';
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
 
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
+  const roleSelect = document.getElementById("roleSelect");
   const selectedRoleElem = document.getElementById("selectedRole");
 
   // Get role from URL query parameter
@@ -25,6 +26,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const email = document.getElementById("login_email").value.trim();
     const password = document.getElementById("login_password").value;
+    const selectedRole = roleSelect.value;
+
+    if (!selectedRole) {
+      alert("Please select a role.");
+      return;
+    }
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -40,6 +47,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
       const userData = userSnap.data();
       const role = userData.role;
+
+      if (role !== selectedRole) {
+        alert(`You are not registered as a ${selectedRole}.`);
+        return;
+      }
 
       // Redirect based on role
       if (role === "user") {

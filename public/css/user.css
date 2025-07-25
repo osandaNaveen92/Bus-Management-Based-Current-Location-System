@@ -1,0 +1,93 @@
+/* css/user.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: #007bff;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout-btn {
+  background-color: white;
+  color: #007bff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #e2e2e2;
+}
+
+.main-content {
+  display: flex;
+  height: 100%;
+}
+
+.search-panel {
+  width: 300px;
+  background-color: #f4f4f4;
+  padding: 30px;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-panel h2 {
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.search-panel label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 500;
+}
+
+.search-panel input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.search-panel button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-panel button:hover {
+  background-color: #0056b3;
+}
+
+.map-section {
+  flex-grow: 1;
+}
+
+#map {
+  width: 100%;
+  height: 100%; /* or 100vh or as needed */
+  min-height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
