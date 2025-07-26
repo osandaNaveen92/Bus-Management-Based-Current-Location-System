@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="css/style.css" />
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <!-- ADD v9+ scripts as modules -->
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/admin.js"></script>
 </head>
 <body>
   <div class="main-container">
@@ -18,7 +18,7 @@
         <li><a href="#">Register Driver</a></li>
         <li><a href="#">Registered Drivers</a></li>
         <li><a href="#">Live Drivers</a></li>
-        <li><a href="#">Routes</a></li>
+        <li><a href="#" id="routesMenu">Routes</a></li>
         <li><a href="#">Users</a></li>
       </ul>
     </aside>
@@ -47,9 +47,35 @@
         <h2>Registered Drivers</h2>
       <ul id="driverList"></ul>
       </div>
+
+      <!-- Routes Section -->
+      <div class="routes-section" id="routesSection" style="display:none;">
+        <h3>Available Routes</h3>
+        <table id="routesTable">
+          <thead>
+            <tr>
+              <th>Bus Number</th>
+              <th>Source</th>
+              <th>Destination</th>
+              <th>Bus Holts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Routes will be populated here -->
+          </tbody>
+        </table>
+        <h4>Add New Route</h4>
+        <form id="addRouteForm">
+          <input type="text" id="route_bus_number" placeholder="Bus Number" required />
+          <input type="text" id="route_source" placeholder="Source" required />
+          <input type="text" id="route_destination" placeholder="Destination" required />
+          <input type="text" id="route_holts" placeholder="Bus Holts (comma separated)" required />
+          <button type="submit">Add Route</button>
+        </form>
+      </div>
     </div>
   </div>
-  <script  src="js/firebase-config.js"></script>
+  <script type="module" src="js/firebase-config.js"></script>
   <script type="module" src="js/admin.js"></script>
 </body>
 </html>

@@ -1,0 +1,113 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('../assets/logo.png') center center no-repeat;
+  background-size: 320px 320px;
+  background-attachment: fixed;
+  background-color: #4278f4;
+  /* Add a transparent overlay for readability */
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.7);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 400px;
+  margin: 60px auto;
+  background: rgba(255,255,255,0.92);
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.13);
+  padding: 36px 28px 28px 28px;
+  text-align: center;
+}
+
+h1 {
+  color: #1a237e;
+  margin-bottom: 22px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #007bff;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #b0c4de;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f8fafd;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.15);
+  background: #fff;
+}
+
+button[type="submit"] {
+  background-color: #1a237e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #3949ab;
+}
+
+p {
+  margin-top: 18px;
+  color: #444;
+  font-size: 1rem;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  .container {
+    width: 95vw;
+    padding: 18px 4vw;
+  }
+}

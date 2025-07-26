@@ -6,15 +6,6 @@ import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-f
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   const roleSelect = document.getElementById("roleSelect");
-  const selectedRoleElem = document.getElementById("selectedRole");
-
-  // Get role from URL query parameter
-  const urlParams = new URLSearchParams(window.location.search);
-  const selectedRole = urlParams.get("role");
-
-  if (selectedRoleElem && selectedRole) {
-    selectedRoleElem.textContent = `Selected Role: ${selectedRole.charAt(0).toUpperCase() + selectedRole.slice(1)}`;
-  }
 
   if (!loginForm) {
     console.error("Login form not found.");
@@ -37,7 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const uid = userCredential.user.uid;
 
-      const userRef = doc(db, "users", uid);
+      // Choose collection based on role
+      let collectionName = selectedRole === "driver" ? "drivers" : "users";
+      const userRef = doc(db, collectionName, uid);
       const userSnap = await getDoc(userRef);
 
       if (!userSnap.exists()) {
@@ -56,8 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // Redirect based on role
       if (role === "user") {
         window.location.href = "user.html";
-      } else if (role === "admin") {
-        window.location.href = "admin.html";
       } else if (role === "driver") {
         window.location.href = "driver.html";
       } else {
