@@ -4,39 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GoFlow - Driver Panel</title>
-    <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <link rel="stylesheet" href="css/driver.css" />
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOqiyWFnAWW7952NMEtJDhREv53ywrMJo&libraries=marker"></script>
 </head>
 <body>
   <header class="header">
+  <div class="logo-section">
+    <img src="assets/logo.png" alt="GoFlow Logo" class="logo" />
     <h2>Driver Panel</h2>
-    <button onclick="logoutDriver()" class="logout-btn">Logout</button>
-  </header>
+  </div>
 
-  <main class="content">
-    <h3>Live Location Sharing</h3>
-    <p>Click start to share your live bus location.</p>
-    <form id="driverForm">
-      <label>Bus Number:</label>
-      <input type="text" id="bus_number" required />
-      
-      <label>Source:</label>
-      <input type="text" id="source" required />
+  <div class="profile-dropdown">
+    <button class="profile-btn" onclick="toggleProfileMenu()">Profile ▾</button>
+    <div id="profileMenu" class="dropdown-content">
+      <p><strong>Email:</strong> <span id="driverEmail">Loading...</span></p>
+      <p><strong>Name:</strong> <span id="driverName">Loading...</span></p>
+      <p><strong>Phone:</strong> <span id="driverPhone">Loading...</span></p>
+      <button onclick="logoutDriver()" class="logout-btn">Logout</button>
+    </div>
+  </div>
+</header>
 
-      <label>Destination:</label>
-      <input type="text" id="destination" required />
+  <main class="main-container">
+    <!-- Left: Driver Form -->
+    <section class="form-section">
+      <h3>Update Bus Details</h3>
+      <form id="driverForm">
+        <input type="text" id="bus_number" placeholder="Bus Number" required />
+        <input type="text" id="source" placeholder="Source" required />
+        <input type="text" id="destination" placeholder="Destination" required />
+        <input type="time" id="start_time" required />
+        <button type="submit">Start Live Tracking</button>
+      </form>
+      <p id="status"></p>
+    </section>
 
-      <button type="submit">Start Live Tracking</button>
-    </form>
-
-    <p id="status"></p>
+    <!-- Right: Map -->
+    <section class="map-section">
+      <div id="map"></div>
+    </section>
   </main>
 
-
   <script src="js/firebase-config.js"></script>
-  <script src="js/driver.js" defer></script>
+  <script type="module" src="js/driver.js"></script>
+  <script>
+  function logoutDriver() {
+    window.location.href = "index.html";
+  }
+</script>
 </body>
 </html>

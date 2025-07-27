@@ -1,61 +1,191 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  background: #007bff;
+  font-family: 'Segoe UI', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #007bff;
 }
 
 .header {
-  background: #ffffff;
+  background-color: #ffffff;
   color: #007bff;
-  padding: 15px;
+  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 80px;
 }
 
-.logout-btn {
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.logo {
+  height: 150px;
+}
+
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-btn {
+  background: #007bff;
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #007bff;
+  min-width: 220px;
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.dropdown-content p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #fff;
+}
+
+.dropdown-content .logout-btn {
+  width: 100%;
+  background: #000000;
+  color: #fff;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dropdown-content .logout-btn:hover {
+  background: #373636;
+}
+
+.show {
+  display: block;
+}
+
+
+.main-container {
+  display: flex;
+  height: 100%;
+  flex: 1;
+  gap: 32px;
+  padding: 32px 40px;
+  box-sizing: border-box;
+}
+
+.form-section {
+  width: 300px;
+  background-color: #f4f4f4;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-section h3 {
+  margin-bottom: 18px;
+  color: #007bff;
+}
+
+#driverForm input[type="text"],
+#driverForm input[type="time"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  background: #fff;
+}
+
+#driverForm button[type="submit"] {
+  width: 100%;
+  padding: 10px;
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 16px;
-  width: 100px;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
-  align-items: right-end;
+  transition: background-color 0.3s;
+  font-weight: bold;
 }
-.hover .btn {
+
+#driverForm button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-.content {
-  max-width: 400px;
-  margin: 30px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+#status {
+  min-height: 20px;
+  color: #28a745;
+  font-weight: 500;
+  margin-top: 8px;
 }
 
-form input {
+.map-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#map {
   width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  height: 100%;
+  min-height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  background: #eaf4ff;
+  border: 1px solid #cce0ff;
 }
 
-button {
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 10px;
-  width: 100%;
-  border-radius: 5px;
-  cursor: pointer;
+/* Responsive Design */
+@media (max-width: 900px) {
+  .main-container {
+    flex-direction: column;
+    padding: 16px 4vw;
+    gap: 20px;
+  }
+  .form-section {
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 18px;
+  }
+  .map-section {
+    min-height: 220px;
+  }
+  #map {
+    min-height: 220px;
+  }
 }
 
-button:hover {
-  background: #0056b3;
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    gap: 8px;
+  }
+  .main-container {
+    padding: 8px 2vw;
+  }
+  .form-section {
+    padding: 10px;
+  }
 }
