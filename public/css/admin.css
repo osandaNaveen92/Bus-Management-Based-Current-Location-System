@@ -1,0 +1,587 @@
+/* Admin Dashboard CSS */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-container {
+  display: flex;
+  height: 100vh;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  color: #2d3748;
+  padding: 15px 30px;
+  z-index: 1000;
+  box-sizing: border-box;
+  height: 70px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header .company-name {
+  justify-self: start;
+  font-weight: 700;
+  font-size: 1.7em;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header .dashboard-title {
+  justify-self: center;
+  font-size: 1.8em;
+  font-weight: 600;
+  text-align: center;
+  color: #2d3748;
+}
+
+.header .signout-btn {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 28px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  gap: 8px;
+  font-size: 16px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.header-logo {
+  height: 50px;
+  width: auto;
+  margin-left: 20px;
+}
+
+.header .signout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.header .signout-btn img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  color: #2d3748;
+  padding-top: 90px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.menu {
+  list-style: none;
+  padding: 20px 0;
+  margin: 0;
+}
+
+.menu li {
+  margin: 5px 0;
+}
+
+.menu li a {
+  display: block;
+  color: #4a5568;
+  text-decoration: none;
+  padding: 20px 25px;
+  font-weight: 600;
+  border-radius: 0 25px 25px 0;
+  margin-right: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  font-size: 16px;
+}
+
+.menu li a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.menu li a:hover,
+.menu li a.menu-active {
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  transform: translateX(5px);
+}
+
+.menu li a:hover::before,
+.menu li a.menu-active::before {
+  transform: scaleY(1);
+}
+
+/* Content Area */
+.content {
+  margin-left: 250px;
+  padding: 100px 40px 40px 40px;
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Admin Profile Section */
+.admin-profile-section h3 {
+  color: #1a237e;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.profile-container {
+  background: white;
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  overflow: hidden;
+}
+
+.profile-card {
+  padding: 30px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #1a237e, #3949ab);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.profile-basic-info {
+  flex-grow: 1;
+}
+
+.profile-basic-info h4 {
+  color: #1a237e;
+  font-size: 26px;
+  margin-bottom: 5px;
+}
+
+.profile-basic-info p {
+  color: #666;
+  font-size: 16px;
+  margin: 0;
+}
+
+.edit-btn {
+  background: #74ebd5;
+  color: #1a237e;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.edit-btn:hover {
+  background: #5dd3bf;
+  transform: translateY(-1px);
+}
+
+.profile-details {
+  display: grid;
+  gap: 15px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #1a237e;
+  min-width: 80px;
+}
+
+.detail-value {
+  color: #333;
+  text-align: right;
+}
+
+/* Profile Edit Form */
+.profile-edit {
+  background: #f8fafd;
+  padding: 30px;
+}
+
+.profile-form h4 {
+  color: #1a237e;
+  margin-bottom: 25px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.profile-form .form-group {
+  margin-bottom: 20px;
+}
+
+.profile-form label {
+  display: block;
+  color: #1a237e;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.profile-form input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e6ed;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.profile-form input:focus {
+  outline: none;
+  border-color: #1a237e;
+  box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+}
+
+.form-note {
+  color: #666;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.cancel-btn {
+  flex: 1;
+  background: #e0e6ed;
+  color: #666;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background: #d0d7de;
+}
+
+.save-btn {
+  flex: 1;
+  background: #1a237e;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.save-btn:hover {
+  background: #3949ab;
+  transform: translateY(-1px);
+}
+
+/* Register Driver Section */
+.register-driver-section h3 {
+  color: #1a237e;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.driver-form {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 15px 18px;
+  border: 2px solid #e0e6ed;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: #f8fafd;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #1a237e;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+}
+
+.create-btn {
+  width: 100%;
+  background: #1a237e;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.create-btn:hover {
+  background: #3949ab;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(26, 35, 126, 0.3);
+}
+
+/* Registered Drivers Section */
+.registered-drivers-section h3 {
+  color: #1a237e;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.search-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  max-width: 500px;
+}
+
+.search-container input {
+  flex: 1;
+  padding: 12px 18px;
+  border: 2px solid #e0e6ed;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.search-container input:focus {
+  outline: none;
+  border-color: #1a237e;
+  box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+}
+
+.search-container button {
+  padding: 12px 20px;
+  background: #74ebd5;
+  color: #1a237e;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-container button:hover {
+  background: #5dd3bf;
+  transform: translateY(-1px);
+}
+
+.drivers-container {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.drivers-count {
+  color: #1a237e;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.drivers-list {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.driver-card {
+  background: #f8fafd;
+  border: 1px solid #e0e6ed;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.driver-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-color: #1a237e;
+}
+
+.driver-info h4 {
+  color: #1a237e;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.driver-info p {
+  color: #666;
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.driver-info .email {
+  color: #3949ab;
+  font-weight: 500;
+}
+
+.driver-info .phone {
+  color: #74ebd5;
+  font-weight: 500;
+}
+
+.no-drivers {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 40px 0;
+  font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+  
+  .content {
+    margin-left: 200px;
+    padding: 100px 20px 20px 20px;
+  }
+  
+  .header {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 8px;
+    text-align: center;
+    padding: 10px;
+    height: auto;
+  }
+  
+  .header .company-name,
+  .header .dashboard-title,
+  .header .signout-btn {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding-top: 20px;
+  }
+  
+  .content {
+    margin-left: 0;
+    margin-top: 0;
+    padding: 20px 15px;
+  }
+  
+  .main-container {
+    flex-direction: column;
+  }
+  
+  .driver-form,
+  .drivers-container {
+    padding: 20px;
+  }
+}

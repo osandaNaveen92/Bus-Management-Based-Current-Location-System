@@ -5,52 +5,177 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GoFlow - Driver Panel</title>
   <link rel="stylesheet" href="css/driver.css" />
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOqiyWFnAWW7952NMEtJDhREv53ywrMJo&libraries=marker"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOqiyWFnAWW7952NMEtJDhREv53ywrMJo&libraries=marker,places"></script>
 </head>
 <body>
-  <header class="header">
-  <div class="logo-section">
-    <img src="assets/logo.png" alt="GoFlow Logo" class="logo" />
-    <h2>Driver Panel</h2>
+  <div class="main-layout">
+    <!-- Left Navigation -->
+    <nav class="sidebar">
+      <div class="logo-section">
+        <img src="assets/logo.png" alt="GoFlow Logo" class="logo" />
+        <h2>Driver Panel</h2>
+      </div>
+      
+      <ul class="nav-menu">
+        <li><a href="#" id="profileNav" class="nav-active">Profile</a></li>
+        <li><a href="#" id="routeNav">Bus/Route Details</a></li>
+        <li><a href="#" id="journeyNav">Start Journey</a></li>
+        <li><a href="#" id="logoutNav" class="logout-nav">Logout</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+      <!-- Profile Section -->
+      <section id="profileSection" class="content-section">
+        <h3>Driver Profile</h3>
+        <div class="profile-container">
+          <div class="profile-card">
+            <div class="profile-header">
+              <div class="profile-avatar">
+                <span id="driverInitials">DR</span>
+              </div>
+              <div class="profile-info">
+                <h4 id="profileDriverName">Loading...</h4>
+                <p id="profileDriverEmail">Loading...</p>
+              </div>
+            </div>
+            
+            <div class="profile-details">
+              <div class="detail-row">
+                <span class="label">Name:</span>
+                <span id="driverName">Loading...</span>
+              </div>
+              <div class="detail-row">
+                <span class="label">Email:</span>
+                <span id="driverEmail">Loading...</span>
+              </div>
+              <div class="detail-row">
+                <span class="label">Phone:</span>
+                <span id="driverPhone">Loading...</span>
+              </div>
+              <div class="detail-row">
+                <span class="label">Role:</span>
+                <span>Driver</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bus/Route Details Section -->
+      <section id="routeSection" class="content-section" style="display: none;">
+        <h3>Bus/Route Details</h3>
+        <div class="route-container">
+          <form id="routeForm" class="route-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="route_number">Route Number:</label>
+                <input type="text" id="route_number" placeholder="e.g., R001" required />
+              </div>
+              
+              <div class="form-group">
+                <label for="bus_number">Bus Number:</label>
+                <input type="text" id="bus_number" placeholder="e.g., OD-05-1234" required />
+              </div>
+              
+              <div class="form-group">
+                <label for="route_source">Source:</label>
+                <input type="text" id="route_source" placeholder="Starting point" required />
+              </div>
+              
+              <div class="form-group">
+                <label for="route_destination">Destination:</label>
+                <input type="text" id="route_destination" placeholder="End point" required />
+              </div>
+              
+              <div class="form-group">
+                <label for="bus_type">Bus Type:</label>
+                <select id="bus_type" required>
+                  <option value="">Select Type</option>
+                  <option value="AC">AC</option>
+                  <option value="NON-AC">NON-AC</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="journey_time">Estimated Journey Time (hours):</label>
+                <input type="number" id="journey_time" placeholder="e.g., 2.5" step="0.5" min="0.5" required />
+              </div>
+            </div>
+            
+            <div class="bus-stops-section">
+              <h4>Bus Stops</h4>
+              <div class="map-container">
+                <div id="routeMap" class="route-map"></div>
+                <div class="map-controls">
+                  <input type="text" id="stopSearch" placeholder="Search location to add stop..." />
+                  <button type="button" id="addStopBtn">Add Stop</button>
+                  <button type="button" id="clearStopsBtn">Clear All</button>
+                </div>
+              </div>
+              
+              <div class="stops-list">
+                <h5>Added Stops:</h5>
+                <ul id="stopsList"></ul>
+              </div>
+            </div>
+            
+            <button type="submit" class="save-route-btn">Save Route</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Start Journey Section -->
+      <section id="journeySection" class="content-section" style="display: none;">
+        <h3>Start Journey</h3>
+        <div class="journey-container">
+          <!-- Saved Routes List -->
+          <div class="saved-routes">
+            <h4>Your Saved Routes</h4>
+            <div id="routesList" class="routes-list">
+              <!-- Routes will be populated here -->
+            </div>
+          </div>
+          
+          <!-- Selected Route Details -->
+          <div id="selectedRoute" class="selected-route" style="display: none;">
+            <h4>Selected Route Details</h4>
+            <div class="route-details-card">
+              <div class="route-info">
+                <p><strong>Route:</strong> <span id="selectedRouteNumber"></span></p>
+                <p><strong>Bus:</strong> <span id="selectedBusNumber"></span></p>
+                <p><strong>From:</strong> <span id="selectedSource"></span></p>
+                <p><strong>To:</strong> <span id="selectedDestination"></span></p>
+                <p><strong>Type:</strong> <span id="selectedBusType"></span></p>
+                <p><strong>Duration:</strong> <span id="selectedJourneyTime"></span> hours</p>
+              </div>
+              
+              <div class="journey-controls">
+                <div class="form-group">
+                  <label for="start_time">Start Time:</label>
+                  <input type="time" id="start_time" required />
+                </div>
+                <button id="startJourneyBtn" class="start-journey-btn">Start Journey</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Live Tracking Map -->
+          <div id="trackingSection" class="tracking-section" style="display: none;">
+            <h4>Live Tracking</h4>
+            <div id="trackingMap" class="tracking-map"></div>
+            <div class="tracking-status">
+              <p id="trackingStatus">Tracking stopped</p>
+              <button id="stopTrackingBtn" class="stop-tracking-btn">Stop Journey</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
-
-  <div class="profile-dropdown">
-    <button class="profile-btn" onclick="toggleProfileMenu()">Profile ▾</button>
-    <div id="profileMenu" class="dropdown-content">
-      <p><strong>Email:</strong> <span id="driverEmail">Loading...</span></p>
-      <p><strong>Name:</strong> <span id="driverName">Loading...</span></p>
-      <p><strong>Phone:</strong> <span id="driverPhone">Loading...</span></p>
-      <button onclick="logoutDriver()" class="logout-btn">Logout</button>
-    </div>
-  </div>
-</header>
-
-  <main class="main-container">
-    <!-- Left: Driver Form -->
-    <section class="form-section">
-      <h3>Update Bus Details</h3>
-      <form id="driverForm">
-        <input type="text" id="bus_number" placeholder="Bus Number" required />
-        <input type="text" id="source" placeholder="Source" required />
-        <input type="text" id="destination" placeholder="Destination" required />
-        <input type="time" id="start_time" required />
-        <button type="submit">Start Live Tracking</button>
-      </form>
-      <p id="status"></p>
-    </section>
-
-    <!-- Right: Map -->
-    <section class="map-section">
-      <div id="map"></div>
-    </section>
-  </main>
 
   <script src="js/firebase-config.js"></script>
   <script type="module" src="js/driver.js"></script>
-  <script>
-  function logoutDriver() {
-    window.location.href = "index.html";
-  }
-</script>
 </body>
 </html>

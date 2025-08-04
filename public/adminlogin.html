@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin & Driver Login</title>
+  <link rel="stylesheet" href="css/adminlogin.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Admin / Driver Login</h2>
+    <form id="adminLoginForm">
+      <input type="email" id="login_email" placeholder="Email" required>
+      <input type="password" id="login_password" placeholder="Password" required>
+
+      <select id="login_role" required>
+        <option value="">Select Role</option>
+        <option value="admin">Admin</option>
+        <option value="driver">Driver</option>
+      </select>
+
+      <button type="submit">Login</button>
+    </form>
+    <p id="error_message"></p>
+  </div>
+
+  <!-- Firebase v9 SDK -->
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/adminlogin.js"></script>
+</body>
+</html>

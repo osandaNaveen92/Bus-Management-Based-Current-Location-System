@@ -1,11 +1,9 @@
-// js/login.js
 import { auth, db } from './firebase-config.js';
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import { doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
-  const roleSelect = document.getElementById("roleSelect");
 
   if (!loginForm) {
     console.error("Login form not found.");
@@ -17,43 +15,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const email = document.getElementById("login_email").value.trim();
     const password = document.getElementById("login_password").value;
-    const selectedRole = roleSelect.value;
-
-    if (!selectedRole) {
-      alert("Please select a role.");
-      return;
-    }
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const uid = userCredential.user.uid;
+      const { uid } = userCredential.user;
 
-      // Choose collection based on role
-      let collectionName = selectedRole === "driver" ? "drivers" : "users";
-      const userRef = doc(db, collectionName, uid);
+      // Check in users collection only
+      const userRef = doc(db, "users", uid);
       const userSnap = await getDoc(userRef);
 
       if (!userSnap.exists()) {
-        alert("User record not found in Firestore.");
+        alert("User account not found. Please register first.");
         return;
       }
 
       const userData = userSnap.data();
-      const role = userData.role;
+      const { role } = userData;
 
-      if (role !== selectedRole) {
-        alert(`You are not registered as a ${selectedRole}.`);
+      if (role !== "user") {
+        alert("This login is for users only.");
         return;
       }
 
-      // Redirect based on role
-      if (role === "user") {
-        window.location.href = "user.html";
-      } else if (role === "driver") {
-        window.location.href = "driver.html";
-      } else {
-        alert("Unknown role. Please contact support.");
-      }
+      // Redirect to user dashboard
+      window.location.href = "user.html";
 
     } catch (error) {
       console.error("Login failed:", error);
