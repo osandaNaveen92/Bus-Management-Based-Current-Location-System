@@ -38,9 +38,6 @@ A modern web-based platform for real-time bus tracking, management, and user int
 
 ## 🛠️ Setup Instructions
 
-
-## 🛠️ Setup Instructions
-
 ### 1️⃣ Clone the Repository
 
 ```bash
