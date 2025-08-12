@@ -396,13 +396,15 @@ clearSearchBtn.addEventListener("click", function() {
   searchInput.focus();
 });
 
-// Sign Out Handler
-const signOutBtn = document.getElementById("signOutBtn");
-if (signOutBtn) {
-  signOutBtn.addEventListener("click", async function () {
+// Logout Handler for Admin Page
+const logoutNav = document.getElementById("logoutNav");
+
+if (logoutNav) {
+  logoutNav.addEventListener("click", async function (e) {
+    e.preventDefault(); // prevent default link behavior
+
     try {
       await signOut(auth);
-      // Clear any stored session data
       sessionStorage.clear();
       window.location.href = "adminlogin.html";
     } catch (error) {
@@ -411,6 +413,7 @@ if (signOutBtn) {
     }
   });
 }
+
 
 // Initialize page
 document.addEventListener("DOMContentLoaded", function() {

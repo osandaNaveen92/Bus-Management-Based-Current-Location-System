@@ -69,7 +69,7 @@ window.addEventListener("DOMContentLoaded", () => {
       });
 
       alert("Registration successful! Redirecting to login page...");
-      window.location.href = "index.html";
+      window.location.href = "user/index.html";
     } catch (error) {
       console.error("Registration failed:", error);
       alert("Registration failed: " + error.message);

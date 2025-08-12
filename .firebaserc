@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "goflow-7988f"
-  }
+  },
+  "targets": {
+    "goflow-7988f": {
+      "hosting": {
+        "admin-site": [
+          "goflow-admin-7988f"
+        ],
+        "user-site": [
+          "goflow-7988f"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

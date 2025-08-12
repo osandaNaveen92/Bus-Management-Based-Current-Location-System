@@ -165,6 +165,20 @@ body {
   transform: scaleY(1);
 }
 
+.logout-nav {
+  color: #e53e3e !important;
+  margin-top: auto;
+}
+
+.logout-nav:hover {
+  background: rgba(229, 62, 62, 0.1) !important;
+  color: #c53030 !important;
+}
+
+.logout-nav:hover::before {
+  background: #e53e3e !important;
+}
+
 /* Content Area */
 .content {
   margin-left: 250px;

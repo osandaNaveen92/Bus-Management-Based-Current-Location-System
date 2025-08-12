@@ -1,12 +1,25 @@
 {
-  "hosting": {
-    "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "cleanUrls": true,
-    "rewrites": []
-  }
+  "hosting": [
+    {
+      "target": "user-site",
+      "public": "public/user",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    },
+    {
+      "target": "admin-site",
+      "public": "public/admin",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        { "source": "**", "destination": "/adminlogin.html" }
+      ]
+    }
+  ]
 }
