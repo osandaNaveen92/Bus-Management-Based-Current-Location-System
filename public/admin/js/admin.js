@@ -257,7 +257,7 @@ document.getElementById("createDriverForm").addEventListener("submit", async fun
   try {
     // Create Firebase Auth account for driver
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const uid = userCredential.user.uid;
+    const { uid } = userCredential.user;
 
     // Save driver details in Firestore (drivers collection)
     await setDoc(doc(db, "drivers", uid), {
