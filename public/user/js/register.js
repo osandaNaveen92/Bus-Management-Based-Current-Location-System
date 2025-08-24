@@ -68,8 +68,8 @@ window.addEventListener("DOMContentLoaded", () => {
         registered_at: new Date().toISOString()
       });
 
-      alert("Registration successful! Redirecting to login page...");
-      window.location.href = "user/index.html";
+      alert("Registration successful!");
+      window.location.href = "/user/index.html";
     } catch (error) {
       console.error("Registration failed:", error);
       alert("Registration failed: " + error.message);

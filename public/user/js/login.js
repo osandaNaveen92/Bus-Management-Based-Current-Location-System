@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Redirect to user dashboard
-      window.location.href = "user.html";
+      window.location.href = "./user.html";
 
     } catch (error) {
       console.error("Login failed:", error);
